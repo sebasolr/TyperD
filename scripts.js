@@ -23,7 +23,7 @@ function init(){
     // load word from array
     showWord(words);
     // comenzar con la palabra input
-    wordInput.addEventListener('input',starMatch)
+    wordInput.addEventListener('keyup',starMatch)
     //cuenta regresiva 10 segundo
     setInterval(countdown,1000);
     //check juego
@@ -31,7 +31,12 @@ function init(){
 }
 
 // comenzar juego.
-function starMatch(){
+function starMatch(ev){
+    // si el usuario no apretó el enter, la funcion no hace nada
+    if(ev.keyCode!= 13){
+        return
+    }
+
     if(matchWords()){ //si la palabra es correcta el jugador obtedra puntos,si falla fin del juego
         playing= true;
         time= 11;
