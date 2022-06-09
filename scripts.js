@@ -3,7 +3,7 @@ window.addEventListener('load', init)
 
 let time = 10;
 let score = 0;
-let playing;
+let playing = true;
 
 // elementos del DOM
 
@@ -22,6 +22,10 @@ const words = ['californication','plataforma5','black','summer','flea','aeroplan
 function init(){
     // load word from array
     showWord(words);
+    //cuenta regresiva 10 segundo
+    setInterval(countdown,1000);
+    //check juego
+    setInterval(checkStatus,50);
 }
 // generar palabra random
 function showWord(words){
@@ -29,7 +33,23 @@ function showWord(words){
     // salida de la palabra random
     currentWord.innerHTML=words[randIndex];
 }
-
+// countdown timer
+function countdown(){
+// hacer que el tiempo corra
+if(time > 0){
+    // decrement
+    time--;
+}else if(time === 0){
+        playing=false;
+    }
+seconds.innerHTML=time;
+}
+// game status
+function checkStatus(){
+    if(playing=== false && time === 0){
+        message.innerHTML='Perdiste';
+    }
+}
 
 // funciones
 
